@@ -1,9 +1,9 @@
-"""Constants for integration_blueprint."""
+"""Constants for yaml_helper."""
 from logging import Logger, getLogger
 
 LOGGER: Logger = getLogger(__package__)
 
-NAME = "Integration blueprint"
-DOMAIN = "integration_blueprint"
+NAME = "Yaml Helper"
+DOMAIN = "yaml_helper"
 VERSION = "0.0.0"
 ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
