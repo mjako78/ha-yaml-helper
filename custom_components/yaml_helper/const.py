@@ -5,5 +5,8 @@ LOGGER: Logger = getLogger(__package__)
 
 NAME = "Yaml Helper"
 DOMAIN = "yaml_helper"
-VERSION = "0.0.0"
-ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
+VERSION = "0.1.0"
+ICON = "mdi:death-star-variant"
+
+KEY_NAME = "key_name"
+KEY_VALUE = "key_value"

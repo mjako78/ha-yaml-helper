@@ -1,18 +1,28 @@
 {
-    "config": {
-        "step": {
-            "user": {
-                "description": "If you need help with the configuration have a look here: https://github.com/mjako78/yaml_helper",
-                "data": {
-                    "username": "Username",
-                    "password": "Password"
-                }
-            }
-        },
-        "error": {
-            "auth": "Username/Password is wrong.",
-            "connection": "Unable to connect to the server.",
-            "unknown": "Unknown error occurred."
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set a key / value pair",
+        "description": "If you need help with the configuration have a look here: https://github.com/mjako78/yaml_helper",
+        "data": {
+          "name": "Name",
+          "key_name": "Key",
+          "key_value": "Value"
         }
+      }
+    },
+    "options": {
+      "step": {
+        "init": {
+          "data": {
+            "key_name": "Key",
+            "key_value": "Value"
+          }
+        }
+      }
+    },
+    "error": {
+      "unknown": "Unknown error occurred."
     }
+  }
 }

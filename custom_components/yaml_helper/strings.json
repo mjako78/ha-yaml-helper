@@ -1,0 +1,34 @@
+{
+  "title": "Store options in key / value pairs",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Store options in key / value pairs",
+        "description": "Store options in key / value pairs.",
+        "data": {
+          "name": "Name of the sensor",
+          "key_name": "Name of the key",
+          "key_value": "Value of the key"
+        },
+        "data_description": {
+          "key_name": "Name of the key",
+          "key_value": "Value of the key"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "key_name": "[%key:component::yaml_helper::config::step::user::data::key_name%]",
+          "key_value": "[%key:component::yaml_helper::config::step::user::data::key_value%]"
+        },
+        "data_description": {
+          "key_name": "[%key:component::yaml_helper::config::step::user::data_description::key_name%]",
+          "key_value": "[%key:component::yaml_helper::config::step::user::data_description::key_value%]"
+        }
+      }
+    }
+  }
+}
