@@ -17,7 +17,8 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up this integration using UI."""
-    LOGGER.debug("--> __init__.async_setup_entry")
+    LOGGER.error("--> __init__.async_setup_entry")
+    LOGGER.error(entry)
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
     return True
@@ -25,11 +26,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Handle removal of an entry."""
-    LOGGER.debug("--> __init__.async_unload_entry")
+    LOGGER.error("--> __init__.async_unload_entry")
+    LOGGER.error(entry)
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
 
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Reload config entry."""
-    LOGGER.debug("--> __init__.async_reload_entry")
+    LOGGER.error("--> __init__.async_reload_entry")
+    LOGGER.error(entry)
     await hass.config_entries.async_unload_platforms(entry, PLATFORMS)

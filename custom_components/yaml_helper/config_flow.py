@@ -12,14 +12,9 @@ from homeassistant.helpers.schema_config_entry_flow import (
     SchemaFlowFormStep,
 )
 
-from .const import DOMAIN, KEY_NAME, KEY_VALUE
+from .const import DOMAIN, VALUES, LOGGER
 
-OPTIONS_SCHEMA = vol.Schema(
-    {
-        vol.Required(KEY_NAME): selector.TextSelector(),
-        vol.Required(KEY_VALUE): selector.TextSelector(),
-    }
-)
+OPTIONS_SCHEMA = vol.Schema({vol.Required(VALUES): selector.ObjectSelector()})
 
 CONFIG_SCHEMA = vol.Schema({vol.Required("name"): selector.TextSelector()}).extend(
     OPTIONS_SCHEMA.schema
@@ -38,4 +33,7 @@ class YamlHelperFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
 
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str:
         """Return config entry title"""
-        return cast(str, options["name"]) if "name" in options else ""
+        LOGGER.error("--> YamlHelperFlowHandler.async_config_entry_title")
+        LOGGER.error(options)
+        return "Fuffa"
+        # return cast(str, options["name"]) if "name" in options else ""

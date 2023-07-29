@@ -13,7 +13,7 @@ from homeassistant.helpers.reload import async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
 from . import PLATFORMS
-from .const import DOMAIN, ICON, KEY_NAME, KEY_VALUE
+from .const import DOMAIN, ICON, VALUES
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -32,16 +32,12 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Initialize Yaml Helper config entry."""
-    _LOGGER.debug("--> async_setup_entry")
-    key_name = config_entry.options[KEY_NAME]
-    key_value = config_entry.options[KEY_VALUE]
-    async_add_entities(
-        [
-            YamlHelperSensor(
-                config_entry.title, key_name, key_value, config_entry.entry_id
-            )
-        ]
-    )
+    _LOGGER.error("--> async_setup_entry")
+    values = config_entry.options[VALUES]
+    _LOGGER.error(values)
+    # async_add_entities(
+    #     [YamlHelperSensor(config_entry.title, values, config_entry.entry_id)]
+    # )
 
 
 async def async_setup_platform(
@@ -51,13 +47,15 @@ async def async_setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Setup Yaml Helper sensor"""
-    _LOGGER.debug("--> async_setup_platform")
+    _LOGGER.error("--> async_setup_platform")
     name: str | None = config.get(CONF_NAME)
-    key_name: str = config[KEY_NAME]
-    key_value: str = config[KEY_VALUE]
+    values: str = config[VALUES]
     unique_id = config.get(CONF_UNIQUE_ID)
-    await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
-    async_add_entities([YamlHelperSensor(name, key_name, key_value, unique_id)])
+    _LOGGER.error(name)
+    _LOGGER.error(values)
+    _LOGGER.error(unique_id)
+    # await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
+    # async_add_entities([YamlHelperSensor(name, values, unique_id)])
 
 
 class YamlHelperSensor(SensorEntity):
@@ -68,13 +66,15 @@ class YamlHelperSensor(SensorEntity):
     _attr_state_class = SensorStateClass.MEASUREMENT
 
     def __init__(
-        self, name: str | None, key_name: str, key_value: str, unique_id: str | None
+        self, name: str | None, config: ConfigType, unique_id: str | None
     ) -> None:
         """Initialize the sensor class."""
-        _LOGGER.debug("--> __init__")
+        _LOGGER.error("--> __init__")
+        _LOGGER.error(name)
+        _LOGGER.error(config)
+        _LOGGER.error(unique_id)
         self._attr_unique_id = unique_id
-        self._key_name = key_name
-        self._key_value = key_value
+        self._config = config
         if name:
             self._attr_name = name
         else:
