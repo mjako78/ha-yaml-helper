@@ -32,12 +32,10 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Initialize Yaml Helper config entry."""
-    _LOGGER.error("--> async_setup_entry")
     values = config_entry.options[VALUES]
-    _LOGGER.error(values)
-    # async_add_entities(
-    #     [YamlHelperSensor(config_entry.title, values, config_entry.entry_id)]
-    # )
+    async_add_entities(
+        [YamlHelperSensor(config_entry.title, values, config_entry.entry_id)]
+    )
 
 
 async def async_setup_platform(
@@ -47,15 +45,11 @@ async def async_setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Setup Yaml Helper sensor"""
-    _LOGGER.error("--> async_setup_platform")
     name: str | None = config.get(CONF_NAME)
     values: str = config[VALUES]
     unique_id = config.get(CONF_UNIQUE_ID)
-    _LOGGER.error(name)
-    _LOGGER.error(values)
-    _LOGGER.error(unique_id)
-    # await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
-    # async_add_entities([YamlHelperSensor(name, values, unique_id)])
+    await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
+    async_add_entities([YamlHelperSensor(name, values, unique_id)])
 
 
 class YamlHelperSensor(SensorEntity):
@@ -69,10 +63,10 @@ class YamlHelperSensor(SensorEntity):
         self, name: str | None, config: ConfigType, unique_id: str | None
     ) -> None:
         """Initialize the sensor class."""
-        _LOGGER.error("--> __init__")
-        _LOGGER.error(name)
-        _LOGGER.error(config)
-        _LOGGER.error(unique_id)
+        _LOGGER.debug("--> YamlHelperSensor#__init__")
+        _LOGGER.debug("name: %s", name)
+        _LOGGER.debug("config: %s", config)
+        _LOGGER.debug("unique_id: %s", unique_id)
         self._attr_unique_id = unique_id
         self._config = config
         if name:
