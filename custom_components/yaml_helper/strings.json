@@ -19,7 +19,7 @@
     "step": {
       "init": {
         "data": {
-          "values": "Values"
+          "values": "[%key:component::yaml_helper::config::step::sensor::data::values%]"
         },
         "data_description": {
           "values": "Sensor values in yaml format"

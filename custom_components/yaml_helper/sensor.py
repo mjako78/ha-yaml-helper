@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Any, final
 
 # from homeassistant.components.sensor import SensorEntity, SensorEntityDescription
 from homeassistant.components.sensor import SensorEntity, SensorStateClass
@@ -73,3 +74,13 @@ class YamlHelperSensor(SensorEntity):
             self._attr_name = name
         else:
             self._attr_name = "Yaml Helper Sensor"
+
+    @final
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        _LOGGER.debug("--> YamlHelperSensor#state_attributes")
+        _LOGGER.debug("config: %s", self._config)
+        data: dict[str, Any] = {}
+        data["values"] = self._config
+        _LOGGER.debug("data: %s", data)
+        return data
